@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sequalize</title>
+</head>
+<body>
+    <button id="postBtn">Post data</button>
+</body>
+    <script>
+        const postBtn = document.getElementById('postBtn')
+        const addUser = () => {
+            fetch('/api/chirp', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json, */*, text/plain'
+                },
+                body: { author: 'Andy', body: 'Nguyen' }
+            }).then( () => console.log('posted'))
+        }
+
+        postBtn.addEventListener('click', addUser)
+
+
+
+        async function getUsers() {
+            let users = await fetch('/api/chirp')
+            let res = await users.json()
+            console.log(res)
+        }
+
+        getUsers()
+        
+    </script>
+</html>
